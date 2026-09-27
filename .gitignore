@@ -1,0 +1,9 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.streamlit/
+.DS_Store
+app_backup.py
+app_before_chat.py
+test_streamlit_llm.py
