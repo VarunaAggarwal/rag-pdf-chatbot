@@ -1,8 +1,25 @@
+import os
 import re
 import subprocess
 
 
 def generate_answer(prompt):
+
+    provider = os.getenv("LLM_PROVIDER", "ollama")
+
+    if provider == "gemini":
+        from google import genai
+
+        client = genai.Client(
+            api_key=os.environ["GEMINI_API_KEY"]
+        )
+
+        response = client.models.generate_content(
+            model="gemini-3.1-flash-lite",
+            contents=prompt
+        )
+
+        return response.text.strip()
 
     result = subprocess.run(
         ["ollama", "run", "llama3.2", prompt],
